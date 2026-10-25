@@ -1,0 +1,71 @@
+:root {
+  --ink: #1d252c;
+  --muted: #5d6a74;
+  --bg: #e8eaec;
+  --panel: #ffffff;
+  --line: #cfd4d8;
+  --steel: #26323b;
+  --safety: #f2b705;
+  --ok: #2f7d4f;
+  --warn: #b7791f;
+  --bad: #b83b2e;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; display: flex; min-height: 100vh; font-family: 'Barlow', system-ui, sans-serif; color: var(--ink); background: var(--bg); }
+
+aside { width: 230px; background: var(--steel); color: #e8eaec; padding: 22px 0; position: sticky; top: 0; height: 100vh; flex-shrink: 0; }
+.brand { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 30px; padding: 0 22px 20px; border-bottom: 4px solid var(--safety); margin-bottom: 12px; }
+.brand small { display: block; font-family: 'Barlow', sans-serif; font-weight: 400; font-size: 12px; color: #aab4bb; margin-top: 2px; }
+nav button { display: block; width: 100%; text-align: left; background: none; border: 0; border-left: 4px solid transparent; color: #cdd3d8; font: 500 15px 'Barlow', sans-serif; padding: 10px 22px; cursor: pointer; }
+nav button:hover { background: #2f3d48; }
+nav button.active { border-left-color: var(--safety); background: #2f3d48; color: #fff; }
+
+main { flex: 1; padding: 28px 32px; min-width: 0; }
+h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 34px; margin: 0 0 18px; }
+h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; margin: 26px 0 10px; }
+
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 4px; padding: 16px; margin-bottom: 16px; overflow-x: auto; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px; }
+.stat { border-top: 5px solid var(--steel); margin: 0; }
+.stat span { color: var(--muted); font-size: 14px; }
+.stat b { display: block; font: 700 44px 'Barlow Condensed', sans-serif; }
+.stat.alert { border-top-color: var(--bad); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; align-items: end; }
+.item { margin-top: 10px; }
+label { display: flex; flex-direction: column; font-size: 13px; color: var(--muted); gap: 4px; }
+input, select { font: 400 15px 'Barlow', sans-serif; padding: 8px 10px; border: 1px solid var(--line); border-radius: 3px; background: #fff; color: var(--ink); }
+input:focus-visible, select:focus-visible, button:focus-visible { outline: 3px solid var(--safety); outline-offset: 1px; }
+.search { width: 100%; max-width: 340px; margin-bottom: 12px; }
+
+button { font: 600 14px 'Barlow', sans-serif; padding: 8px 14px; border: 1px solid var(--steel); background: #fff; color: var(--steel); border-radius: 3px; cursor: pointer; }
+button:hover { background: #f1f3f4; }
+button.primary { background: var(--safety); border-color: var(--safety); color: #1d252c; }
+button.primary:hover { background: #ddaa05; }
+button.danger { color: var(--bad); border-color: var(--bad); }
+
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th { text-align: left; font-weight: 600; color: var(--muted); font-size: 13px; padding: 8px 10px; border-bottom: 2px solid var(--steel); white-space: nowrap; }
+td { padding: 9px 10px; border-bottom: 1px solid var(--line); }
+td button { padding: 4px 10px; font-size: 13px; }
+.empty { color: var(--muted); padding: 8px 2px; }
+
+.badge { padding: 2px 10px; border-radius: 12px; font-size: 13px; font-weight: 600; color: #fff; }
+.badge.ok { background: var(--ok); }
+.badge.warn { background: var(--warn); }
+.badge.bad { background: var(--bad); }
+
+#toast { position: fixed; right: 24px; bottom: 24px; background: var(--steel); color: #fff; padding: 12px 18px; border-left: 5px solid var(--safety); border-radius: 3px; opacity: 0; pointer-events: none; transition: opacity .2s; max-width: 340px; }
+#toast.show { opacity: 1; }
+#toast.bad { border-left-color: var(--bad); }
+
+@media (max-width: 760px) {
+  body { flex-direction: column; }
+  aside { width: 100%; height: auto; position: static; padding: 14px 0 0; }
+  nav { display: flex; overflow-x: auto; }
+  nav button { white-space: nowrap; border-left: 0; border-bottom: 4px solid transparent; }
+  nav button.active { border-bottom-color: var(--safety); }
+  main { padding: 20px 14px; }
+}
+@media (prefers-reduced-motion: reduce) { #toast { transition: none; } }
